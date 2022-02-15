@@ -41,8 +41,8 @@ func (a *App) setRouters() {
 	a.Get("/product", a.handleRequest(handler.GetProducts))
 	a.Post("/product", a.handleRequest(handler.PostProduct))
 	a.Get("/product/{id}", a.handleRequest(handler.GetProduct))
-	// a.Post("/product/{id}", a.handleRequest(handler.UpdateProducts))
-	// a.Delete("/product/{id}", a.handleRequest(handler.DeleteProducts))
+	a.Post("/product/{id}", a.handleRequest(handler.UpdateProducts))
+	a.Delete("/product/{id}", a.handleRequest(handler.DeleteProducts))
 }
 
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
@@ -52,9 +52,9 @@ func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
 func (a *App) Post(path string, f func(w http.ResponseWriter, r *http.Request)) {
 	a.Router.HandleFunc(path, f).Methods("POST")
 }
-// func (a *App) Delete(path string, f func(w http.ResponseWriter, r *http.Request)) {
-// 	a.Router.HandleFunc(path, f).Methods("DELETE")
-// }
+func (a *App) Delete(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.HandleFunc(path, f).Methods("DELETE")
+}
 
 func (a *App) Run(host string) {
 	log.Fatal(http.ListenAndServe(host, a.Router))
