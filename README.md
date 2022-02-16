@@ -36,14 +36,116 @@ SELECT substr(md5(random()::text), 1, 10) AS product_code, md5(random()::text) A
 
 #### /product
 * `GET` : Get all products with default limit is 8.
+```json
+Request Payload : -
+Response : 
+    data : [
+        {
+            "id": "Number",
+            "product_code": "String",
+            "name": "String",
+            "subcategory": "String",
+            "brand": "String",
+            "price": "Number",
+            "status": "Boolean"
+        }   
+    ],
+    count: "Number",
+    page: "Number",
+    limit: "Number"
+```
+
 
 #### /product?limit=?&page=?
 * `GET` : Get all products with pagination and limit and page from client request. Replace (?) with the desired number 
+```json
+Request Query : 
+    limit = Number,
+    page = Number
+Response : 
+    data : [
+        {
+            "id": "Number",
+            "product_code": "String",
+            "name": "String",
+            "subcategory": "String",
+            "brand": "String",
+            "price": "Number",
+            "status": "Boolean"
+        }   
+    ],
+    count: "Number",
+    page: "Number",
+    limit: "Number"
+```
 
 #### /product
 * `POST` : Create new product.
+```json
+Request Payload : 
+    {
+        "product_code": "String",
+        "name": "String",
+        "subcategory": "String",
+        "brand": "String",
+        "price": "Number",
+    }
+Response : 
+    {
+        "id": "Number",
+        "product_code": "String",
+        "name": "String",
+        "subcategory": "String",
+        "brand": "String",
+        "price": "Number",
+        "status": "Boolean"
+    }   
+```
 
 #### /project/{id}
 * `GET` : Get a detail product
+```json
+Request Params : 
+    id = Number
+Response : 
+    {
+        "id": "Number",
+        "product_code": "String",
+        "name": "String",
+        "subcategory": "String",
+        "brand": "String",
+        "price": "Number",
+        "status": "Boolean"
+    }   
+```
+
 * `POST` : Update a product
+```json
+Request Params : 
+    id = Number
+Request Payload : 
+    {
+        "product_code": "String",
+        "name": "String",
+        "subcategory": "String",
+        "brand": "String",
+        "price": "Number",
+    }
+Response : 
+    {
+        "id": "Number",
+        "product_code": "String",
+        "name": "String",
+        "subcategory": "String",
+        "brand": "String",
+        "price": "Number",
+        "status": "Boolean"
+    }   
+```
 * `DELETE` : Delete a product
+```json
+Request Params : 
+    id = Number
+Response : 
+    Status: OK  
+```
